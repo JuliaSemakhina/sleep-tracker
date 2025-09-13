@@ -1,4 +1,5 @@
 import React from 'react';
+import { AiFillCloseCircle } from "react-icons/ai";
 
 const Modal = ({ show, onClose, children }) => {
   if (!show) return null;
@@ -8,7 +9,8 @@ const Modal = ({ show, onClose, children }) => {
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         {children}
       </div>
-        <button className='close_btn' onClick={onClose}>x</button>
+        {/* <button className='close_btn' onClick={onClose}>x</button> */}
+        <AiFillCloseCircle className='close_btn' onClick={onClose}/>
     </div>
   );
 };

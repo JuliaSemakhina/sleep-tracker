@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from "react-router-dom";
 import logo from './images/mood.png';
 import user_pic from './images/user.jpg';
 import { useGlobalContext } from './context.jsx';
@@ -16,7 +17,13 @@ const MobileMenu = () => {
           <a className='tracker_link' href='#' onClick={toggleMenu}>Your Mood</a>
           <a className='tracker_link' href='#' onClick={toggleMenu}>Your Sleep</a>
           <a className='tracker_link' href='#' onClick={toggleMenu}>Your Thoughts</a>
-          <a className='tracker_link' href='#' onClick={toggleMenu}>Your Stats</a>
+          <a className='tracker_link' href='#average' onClick={toggleMenu}>Your Stats</a>
+                    <NavLink to="/" className={({ isActive }) => `tracker_link ${isActive ? "active" : ""}`} onClick={toggleMenu}>
+                Home
+          </NavLink>
+          <NavLink to="/moodlog" className={({ isActive }) => `tracker_link ${isActive ? "active" : ""}`} onClick={toggleMenu}>
+                Your Log
+          </NavLink>
         </div>
         {/* <img className='logo' src={logo} alt="planet-logo" /> */}
       </div>

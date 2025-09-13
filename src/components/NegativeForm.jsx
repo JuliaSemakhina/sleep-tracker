@@ -25,6 +25,7 @@ function NegativeForm() {
           onChange={handleChange}
           id="notes"
           placeholder="Что сегодня было важного?"
+          required
         />
       </label>
           </>

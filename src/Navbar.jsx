@@ -1,5 +1,5 @@
 import React from 'react';
-// import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logo from './images/mood.png';
 import user_pic from './images/user.jpg';
 import { useGlobalContext } from './context.jsx';
@@ -31,8 +31,13 @@ const handleUserName = (name) =>{
           <a className='tracker_link'>Your Mood</a>
           <a className='tracker_link'>Your Sleep</a>
           <a className='tracker_link'>Your Thoughts</a>
-          <a className='tracker_link'>Your Stats</a>
-          <a className='tracker_link'>Your Log</a>
+          <a className='tracker_link' href='#average'>Your Stats</a>
+          <NavLink to="/" className={({ isActive }) => `tracker_link ${isActive ? "active" : ""}`}>
+                Home
+          </NavLink>
+          <NavLink to="/moodlog" className={({ isActive }) => `tracker_link ${isActive ? "active" : ""}`}>
+                Your Log
+          </NavLink>
         </div>
 
         <div className='user_id'>

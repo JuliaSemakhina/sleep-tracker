@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import useLocalStorage from "./useLocalStorage";
 
+
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
@@ -12,7 +13,9 @@ const AppProvider = ({ children }) => {
     const [userName, setUserName] = useLocalStorage('user', ["User"]);
     const formClosed = () => setIsOpened(false);
     const formShown = () => setIsOpened(true);
+    const [entries, setEntries] = useLocalStorage("entry", []);
 
+    //Average data
 function getAverage (arr, key){
   const freq = arr.reduce((m, o) => {
     const v = o[key];
@@ -35,19 +38,17 @@ const modeSafe =(arr, key)=>{
   return arr.length >5 ? getAverage(arr, key) : 'Not enough entries';
 };
 
-// const moodAv = () => modeSafe(entries, 'mood'); 
-
 //In case therea two equal frequent entries
-// function getModes(arr, key) {
-//   const freq = arr.reduce((m, o) => {
-//     const v = o[key];
-//     m[v] = (m[v] || 0) + 1;
-//     return m;
-//   }, {});
+function getModes(arr, key) {
+  const freq = arr.reduce((m, o) => {
+    const v = o[key];
+    m[v] = (m[v] || 0) + 1;
+    return m;
+  }, {});
 
-//   const maxCnt = Math.max(...Object.values(freq));
-//   return Object.keys(freq).filter(k => freq[k] === maxCnt);
-// };
+  const maxCnt = Math.max(...Object.values(freq));
+  return Object.keys(freq).filter(k => freq[k] === maxCnt);
+};
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -91,7 +92,9 @@ const modeSafe =(arr, key)=>{
                 userName,
                 setUserName,
                 modeSafe,
-                getAverage
+                getAverage,
+                entries,
+                setEntries
         }} >
             {children}
         </AppContext.Provider>

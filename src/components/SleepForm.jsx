@@ -15,8 +15,8 @@ const { handleChange, formData } = useGlobalContext();
       name="sleep"
       value={formData.sleep}
       onChange={handleChange}
-      min={0}
-      max={24}
+      min={2}
+      max={15}
       step={0.5}
       required
     />

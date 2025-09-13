@@ -50,9 +50,16 @@
   --fs-button: clamp(.75rem, 2vw, 1.25rem);  
   --fs-numbers: clamp(.5rem, 2vw, .8rem);  
   --fs-size: clamp(.75rem, 2vw, 1rem);  
+  --box-width: clamp(19rem, 40vw, 50rem);  
 
   --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
 *,
@@ -220,20 +227,41 @@ width: 3rem;
   position: absolute;
   z-index: 150;
   background-color: var(--accent-cyan);
-  width: 50%;
+  /* width: 50%; */
+  width: var(--box-width);
   height: 50%;
   top: 4.5rem;
   left: 50%;
-  left: calc(50% - 25%);
+  /* left: calc(50% - 25%); */
+  left: calc(50% - var(--box-width)/2);
   /* margin-left: -25%; */
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  gap: 4rem;
   border-radius: .5rem;
   box-shadow: var(--dark-shadow);
+}
+
+.registration_form form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: start;
+  gap: 1.5rem;
+  max-height: 50%;
+}
+
+.error_msg {
+  margin-top: -1.5rem;
+  color: var(--accent-red);
+  font-style: italic;
+}
+
+input[aria-invalid="true"] { 
+  border: 1px solid crimson;
 }
 
 /* Modal */
@@ -241,7 +269,9 @@ width: 3rem;
   display: flex;
     justify-content: center;
     align-items: center;
+    margin: 2rem 0;
 }
+
 
 .modal-overlay {
   top: 5.5rem;
@@ -265,9 +295,6 @@ width: 3rem;
 .close_btn {
   background-color: transparent;
   color: var(--white);
-  border: none;
-  outline: none;
-  font-weight: var(--fw-bold);
   width: 2rem;
   height: 2rem;
   z-index: 150;
@@ -525,7 +552,7 @@ section.welcome_container {
   font-weight: var(--fw-semi-bold);
 }
 
-.log_btn {
+.log_btn, .form_btn {
   background-color: var(--primary-blue-light);
   color: var(--white);
   font-weight: var(--fw-bold);
@@ -535,6 +562,12 @@ section.welcome_container {
   border: none;
   margin-top: 1rem;
   cursor: pointer;
+}
+
+.form_btn:disabled,
+.form_btn[disabled] {
+  background-color: var(--accent-red);
+  color: var(--primary-dark-blue);
 }
 
 .log_btn:hover,
@@ -638,7 +671,8 @@ section.welcome_container {
   .thoughts_data,
   .average_data,
   .charts_container,
-  .description {
+  .description,
+  .mood_log {
   background-color: var(--white);
   border-radius: .5rem;
   height: 100%;
@@ -741,6 +775,19 @@ section.welcome_container {
   height: 1.4em;
 }
 
+/* Mood Log */
+
+.mood_log {
+  font-family: var(--font-roboto);
+  color: var(--primary-blue-light);
+  padding: 2rem;
+}
+
+.mood_log ul {
+  list-style: none;
+  margin-top: 2rem;
+}
+
 @media screen and (max-width: 1050px) {
 
   .nav-links .links {
@@ -756,7 +803,7 @@ section.welcome_container {
   }
 
   .user_id {
-    display: none;
+    margin-left: -4rem;
   }
 
   .sidebar .user_id {
