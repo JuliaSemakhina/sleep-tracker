@@ -1,5 +1,5 @@
 ##Mood tracking Site (inspired by challenge on Frontend Mentor)
-[Mood tracking Site Preview (home page)](../public/images/Planet1.jpg)
+[Mood tracking Site Preview (home page)](../public/Mood1.jpg)
 ## Welcome!👋
 
 
@@ -14,7 +14,7 @@
 
 ### Screenshot
 
-[Mood tracking Site Preview (planet info)](../public/images/Planet2.jpg)
+[Mood tracking Site Preview (planet info)](../public/Mood2.jpg)
 
 ### Links
 
