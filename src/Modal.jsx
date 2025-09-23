@@ -9,8 +9,7 @@ const Modal = ({ show, onClose, children }) => {
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         {children}
       </div>
-        {/* <button className='close_btn' onClick={onClose}>x</button> */}
-        <AiFillCloseCircle className='close_btn' onClick={onClose}/>
+      <AiFillCloseCircle className='close_btn' onClick={onClose} />
     </div>
   );
 };

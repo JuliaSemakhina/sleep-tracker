@@ -11,6 +11,7 @@ const useLocalStorage = (key, defaultValue) => {
                 localStorage.setItem(key, JSON.stringify(defaultValue));
                 return defaultValue;
             }
+        // eslint-disable-next-line no-unused-vars
         } catch (error) {
             localStorage.setItem(key, JSON.stringify(defaultValue));
             return defaultValue;
