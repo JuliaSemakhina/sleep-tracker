@@ -56,8 +56,8 @@
   --fs-header: clamp(.85rem, 2vw, 1.5rem);
   --fs-logo: clamp(.5rem, 4vw, 2rem);
   --fs-button: clamp(.75rem, 2vw, 1.25rem);
-  --fs-numbers: clamp(.5rem, 2vw, .8rem);
-  --fs-size: clamp(.75rem, 2vw, 1rem);
+  --fs-numbers: clamp(.75rem, 2vw, .8rem);
+  --fs-size: clamp(.75rem, 1vw, 1rem);
   --box-width: clamp(19rem, 40vw, 30rem);
   --smile-width: clamp(7rem, 25vw, 15rem);
   --burger-width: clamp(2rem, 2vw, 3rem);
@@ -149,6 +149,12 @@ nav {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: var(--transition);
+}
+
+.user_id:hover, 
+.user_id:focus {
+  background-color: var(--accent-blue);
 }
 
 .user_pic {
@@ -252,8 +258,10 @@ input[aria-invalid="true"] {
   background-color: rgba(48, 75, 126, .75);
   /* background-color: rgb(48, 75, 126); */
   border-radius: 2rem;
-  height: 90vh;
-  width: 50vw;
+  /* height: 90vh; */
+  height: 40rem;
+  /* width: 50vw; */
+  width: 40%;
   display: flex;
   /* flex-direction: column; */
   flex-direction: column-reverse;
@@ -285,7 +293,7 @@ input[aria-invalid="true"] {
   top: 1.4rem;
   position: inherit;
   width: 90%;
-  height: 90%;
+  height: 93%;
   font-family: var(--font-default);
 }
 
@@ -350,8 +358,8 @@ input[aria-invalid="true"] {
   background-color: var(--primary-orange);
   color: var(--white);
   padding: .5rem 1rem;
-  width: 40vw;
-  margin-left: calc(50% - 20vw);
+  width: 40%;
+  /* margin-left: calc(50% - 20vw); */
   font-weight: var(--fw-bold);
   cursor: pointer;
   transition: var(--transition);
@@ -473,8 +481,8 @@ section.welcome_container {
 }
 
 .cat_mood {
-  width: clamp(5rem, 18vw, 10rem);
-  height: clamp(5rem, 18vw, 10rem);
+  width: clamp(8rem, 17vw, 10rem);
+  height: clamp(8rem, 17vw, 10rem);
 }
 
 .description p.date {
@@ -718,10 +726,16 @@ section.welcome_container {
 
 .smile_chart {
   position: relative;
+  z-index: 20;
   top: 1.7rem;
   color: var(--white);
   display: flex;
   align-items: center;
+  transition: var(--transition);
+}
+
+.smile_chart:hover {
+  color: var(--primary-deep-blue);
 }
 
 .smile_chart svg {
@@ -826,6 +840,10 @@ section.welcome_container {
     margin-left: 0;
   }
 
+  .description h2 {
+    text-align: center;
+  }
+
   .container_form {
     width: 90%;
   }
@@ -857,6 +875,10 @@ section.welcome_container {
 
   .y-chart {
     gap: 1.4em;
-    width: 4em;
+    width: 2em;
+  }
+
+  .modal-overlay {
+    height: 37rem;
   }
 }

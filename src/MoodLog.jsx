@@ -11,14 +11,14 @@ function MoodLog() {
         {entries.length === 0 && (
           <li className="placeholder">
             <strong>2024-06-21</strong>:
-            Настроение: <img className="mood_img" src={import.meta.env.BASE_URL + `/src/images/нейтральное.png`} alt="neutral" />,
+            Настроение: <img className="mood_img" src={import.meta.env.BASE_URL + `/images/нейтральное.png`} alt="neutral" />,
             Проблемы: Нет, Сон: 7.5 ч.
           </li>
         )}
         {sortedData.map((entry, index) => (
           <li key={index}>
             <strong className='entry_data'>{entry.date}</strong>:
-            Настроение: <img className="mood_img" src={import.meta.env.BASE_URL + `/src/images/${entry.mood}.png`} />,
+            Настроение: <img className="mood_img" src={import.meta.env.BASE_URL + `/images/${entry.mood}.png`} />,
             Проблемы: {entry.problems ? "Да" : "Нет"},
             Сон: {entry.sleep} ч.,
             Мысли: {entry.notes}

@@ -20,11 +20,24 @@ import { PiSmileyMeltingFill } from "react-icons/pi";
 import { PiCatFill } from "react-icons/pi";
 import Tabs from "./Tabs.jsx";
 import { quotes } from './data.jsx';
+import { motion } from "framer-motion";
+import { useMediaQuery } from './utils/useMediaQuery.js';
 
 function Home() {
 
   const { formData, resetForm, setActiveTab, entries, setEntries } = useGlobalContext();
   const { isShowing, open, close } = useModal();
+ const isMobile = useMediaQuery('(max-width: 780px)');
+  const card = isMobile
+    ? { hidden: { x: -40, opacity: 0 }, visible: { x: 0, opacity: 1, transition: { duration: 0.6 } } }
+    : { hidden: {}, visible: {} };
+
+    //Animation (depending on screen)
+ const Anim = ({ children }) => (
+    <motion.div variants={card} initial="hidden" whileInView="visible">
+      {children}
+    </motion.div>
+  );
 
   const random = () => quotes[Math.floor(Math.random() * quotes.length)];
   const [quote] = useState(() => random());
@@ -74,7 +87,7 @@ function Home() {
   //   return arr.length > 5 ? getAverage(arr, key) : 'Not enough entries';
   // };
 
-    //In case therea two equal frequent entries
+    //In case there are two equal frequent entries
   function getModes(arr, key) {
     const freq = arr.reduce((m, o) => {
       const v = o[key];
@@ -175,27 +188,31 @@ function Home() {
   return (
 
     <div className="container">
-      <WelcomeForm />
+         <WelcomeForm />
       <div className='modal-container'>
         <button className='log_btn' onClick={open}>Внести настроение</button>
         <button className='clear' onClick={clearLog}>Очистить записи</button>
         <Modal show={isShowing} onClose={close}>
           <Tabs onEntrySubmit={handleSubmit} />
         </Modal>
+
       </div>
 
       {entries.length > 0 && (
         <div className='data_container'>
           <div className='container_first'>
+          <Anim>
             <div className='mood_container id="mood'>
 
               <div className='current_mood'>Моё настроение сегодня:<br /> <h2 className="entry_data">{splitWords(newestEntry.mood)}</h2></div>
               <div className='current_quote'><BiSolidQuoteLeft /> <br />{`${quote.quote} - ${quote.source}`}</div>
 
               <div className='img_container'>
-                <img className='mood_img' src={import.meta.env.BASE_URL + `/src/images/${newestEntry.mood}.png`} />
+                <img className='mood_img' src={import.meta.env.BASE_URL + `/images/${newestEntry.mood}.png`} />
               </div>
             </div>
+            </Anim>
+
             <div className='thoughts_container'>
               <div className='sleep_data' id='sleep'>
                 <div>
@@ -204,6 +221,8 @@ function Home() {
                 </div>
                 <h3 className="entry_data">{entries[entries.length - 1].sleep} <span className="entry_data">{entries[entries.length - 1].sleep > 4 ? "часов" : "часа"}</span></h3>
               </div>
+
+              <Anim>
               <div className='thoughts_data' id='thoughts'>
                 <div>
                   <BsStars />
@@ -212,6 +231,7 @@ function Home() {
                 <p className="entry_data">{entries[entries.length - 1].notes}</p>
                 <p className="entry_data">{getWords(entries[entries.length - 1].hashtags)}</p>
               </div>
+              </Anim>
             </div>
           </div>
 
@@ -238,6 +258,8 @@ function Home() {
                 </div>
               </div>
             </div>
+            
+            <Anim>
             <div className='charts_container'>
               <h2>График настроение и сна по дням</h2>
               <div className='chart'>
@@ -246,7 +268,7 @@ function Home() {
                     <div key={h}>{h} ч</div>
                   ))}
                 </div>
-
+                  
                 <div className='x-chart'>
                   {sortedReverseData.map(e => (
                     <div key={e.date} className='sleep_bar'>
@@ -266,6 +288,7 @@ function Home() {
                 </div>
               </div>
             </div>
+            </Anim>
           </div>
         </div>
       )}

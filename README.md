@@ -1,7 +1,6 @@
 ##Mood tracking Site (inspired by challenge on Frontend Mentor)
-[Mood tracking Site Preview (home page)](../public/Mood1.jpg)
+[Mood tracking Site Preview (home page)](/public/Mood1.jpg)
 ## Welcome!👋
-
 
 ### The challenge 
 - The optimal layout for the site depending on device's screen size
@@ -14,7 +13,7 @@
 
 ### Screenshot
 
-[Mood tracking Site Preview (planet info)](../public/Mood2.jpg)
+[Mood tracking Site Preview (data input)](/public/Mood2.jpg)
 
 ### Links
 
@@ -111,6 +110,19 @@ or
     </>
   );
 };
+
+```
+```js (framer-motion)
+ const isMobile = useMediaQuery('(max-width: 780px)');
+  const card = isMobile
+    ? { hidden: { x: -40, opacity: 0 }, visible: { x: 0, opacity: 1, transition: { duration: 0.6 } } }
+    : { hidden: {}, visible: {} };
+
+ const Anim = ({ children }) => (
+    <motion.div variants={card} initial="hidden" whileInView="visible">
+      {children}
+    </motion.div>
+  );
 
 ```
 
