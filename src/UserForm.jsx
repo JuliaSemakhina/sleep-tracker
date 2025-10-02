@@ -52,11 +52,11 @@ const UserForm = ({ isClosed, onSave }) => {
               required: true,
               pattern: {
                 value: /^[A-Za-zА-Яа-яЁё\s]+$/,
-                message: "Only letters are valid"
+                message: "Только буквы"
               },
               minLength: {
                 value: 2,
-                message: "This input is less than minLength",
+                message: "Должно быть минимум два знака",
               },
             })}
               placeholder='Введите имя'
@@ -73,10 +73,10 @@ const UserForm = ({ isClosed, onSave }) => {
             />
             <input className='form_input'
               {...register("lastName", {
-                required: 'Enter your last name',
+                required: 'Введите фамилию',
                 minLength: {
                   value: 2,
-                  message: "This input is less than minLength",
+                  message: "Должно быть минимум два знака",
                 }
               },
               )}
@@ -93,7 +93,7 @@ const UserForm = ({ isClosed, onSave }) => {
 
             <button type='submit' className='form_btn' onClick={submit} disabled={Object.keys(errors).length > 0}>OK</button>
           </form>
-          <AiFillCloseCircle className='close_btn' onClick={isClosed} />
+          <AiFillCloseCircle type='button' className='close_btn' onClick={isClosed} />
         </motion.div>
       )}
     </AnimatePresence>

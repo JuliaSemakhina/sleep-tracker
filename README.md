@@ -17,7 +17,7 @@
 
 ### Links
 
-- Live Site URL: [link](https://juliasemakhina/sleep-tracker)
+- Live Site URL: [link](https://juliasemakhina.github.io/sleep-tracker/)
 
 
 ### Built with
@@ -28,7 +28,8 @@
 - CSS Grid
 - [React](https://reactjs.org/) - JS library
 - [hamburger-react](https://hamburger-react.netlify.app) - For animated Hamburger Menu
-- [React Hook Form](https://react-hook-form.com/) - for User's registration
+- [React Hook Form](https://react-hook-form.com/) - For User's registration
+- [framer-motion](https://motion.dev/docs/react) - For animation
 
 ### What I learned
 
@@ -40,7 +41,7 @@
 
 ```
 ```
-```css
+```css (radio-buttons)
 .mood-radio input[type="radio"] {
   position: absolute;
   opacity: 0;
@@ -60,7 +61,7 @@
   background-color: var(--primary-orange);
 }
 ```
-```js
+```js (react-hook-form)
         {errors.lastName?.type === "required" && (
           <small className='error_msg'>Last name is required</small>
         )};
@@ -129,8 +130,10 @@ or
 ### Will be working on the following improvements
 
 - More complex authentication form (with e-mail, passwords and back-end);
-- Buttons on cahrt to sort out weeks/months of entered data 
+- Filters to sort out weeks/months of entered data 
 - Add English with "i18n"
+- Add citations depending on selected mood
+- Show most popular hashtags
 
 ## Author
 

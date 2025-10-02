@@ -27,13 +27,13 @@ function Home() {
 
   const { formData, resetForm, setActiveTab, entries, setEntries } = useGlobalContext();
   const { isShowing, open, close } = useModal();
- const isMobile = useMediaQuery('(max-width: 780px)');
+  const isMobile = useMediaQuery('(max-width: 780px)');
   const card = isMobile
     ? { hidden: { x: -40, opacity: 0 }, visible: { x: 0, opacity: 1, transition: { duration: 0.6 } } }
     : { hidden: {}, visible: {} };
 
-    //Animation (depending on screen)
- const Anim = ({ children }) => (
+  //Animation (depending on screen)
+  const Anim = ({ children }) => (
     <motion.div variants={card} initial="hidden" whileInView="visible">
       {children}
     </motion.div>
@@ -64,7 +64,7 @@ function Home() {
     console.log(entries);
   };
 
-   //Average data
+  //Average data
   function getAverage(arr, key) {
     const freq = arr.reduce((m, o) => {
       const v = o[key];
@@ -87,7 +87,7 @@ function Home() {
   //   return arr.length > 5 ? getAverage(arr, key) : 'Not enough entries';
   // };
 
-    //In case there are two equal frequent entries
+  //In case there are two equal frequent entries
   function getModes(arr, key) {
     const freq = arr.reduce((m, o) => {
       const v = o[key];
@@ -188,7 +188,7 @@ function Home() {
   return (
 
     <div className="container">
-         <WelcomeForm />
+      <WelcomeForm />
       <div className='modal-container'>
         <button className='log_btn' onClick={open}>Внести настроение</button>
         <button className='clear' onClick={clearLog}>Очистить записи</button>
@@ -201,19 +201,19 @@ function Home() {
       {entries.length > 0 && (
         <div className='data_container'>
           <div className='container_first'>
-          <Anim>
-            <div className='mood_container id="mood'>
+              <div className='mood_container id="mood'>
 
-              <div className='current_mood'>Моё настроение сегодня:<br /> <h2 className="entry_data">{splitWords(newestEntry.mood)}</h2></div>
-              <div className='current_quote'><BiSolidQuoteLeft /> <br />{`${quote.quote} - ${quote.source}`}</div>
+                <div className='current_mood'>Моё настроение сегодня:<br /> <h2 className="entry_data">{splitWords(newestEntry.mood)}</h2></div>
+                <div className='current_quote'><BiSolidQuoteLeft /> <br />{`${quote.quote} - ${quote.source}`}</div>
 
-              <div className='img_container'>
-                <img className='mood_img' src={import.meta.env.BASE_URL + `/images/${newestEntry.mood}.png`} />
+                <div className='img_container'>
+                  <img className='mood_img' src={import.meta.env.BASE_URL + `/images/${newestEntry.mood}.png`} />
+                </div>
               </div>
-            </div>
-            </Anim>
 
+            
             <div className='thoughts_container'>
+            <Anim>
               <div className='sleep_data' id='sleep'>
                 <div>
                   <GiNightSleep />
@@ -221,21 +221,23 @@ function Home() {
                 </div>
                 <h3 className="entry_data">{entries[entries.length - 1].sleep} <span className="entry_data">{entries[entries.length - 1].sleep > 4 ? "часов" : "часа"}</span></h3>
               </div>
+              </Anim>
 
               <Anim>
-              <div className='thoughts_data' id='thoughts'>
-                <div>
-                  <BsStars />
-                  <h4>Мысли за день</h4>
+                <div className='thoughts_data' id='thoughts'>
+                  <div>
+                    <BsStars />
+                    <h4>Мысли за день</h4>
+                  </div>
+                  <p className="entry_data">{entries[entries.length - 1].notes}</p>
+                  <p className="entry_data">{getWords(entries[entries.length - 1].hashtags)}</p>
                 </div>
-                <p className="entry_data">{entries[entries.length - 1].notes}</p>
-                <p className="entry_data">{getWords(entries[entries.length - 1].hashtags)}</p>
-              </div>
               </Anim>
             </div>
           </div>
 
           <div className='container_second' id='average'>
+          <Anim>
             <div className='average_data'>
               <div className='average'>
                 <h4>Среднее значение настроения <span>(последние 5 записей)</span></h4>
@@ -258,36 +260,37 @@ function Home() {
                 </div>
               </div>
             </div>
-            
+            </Anim>
+
             <Anim>
-            <div className='charts_container'>
-              <h2>График настроение и сна по дням</h2>
-              <div className='chart'>
-                <div className='y-chart'>
-                  {Y_TICKS.map(h => (
-                    <div key={h}>{h} ч</div>
-                  ))}
-                </div>
-                  
-                <div className='x-chart'>
-                  {sortedReverseData.map(e => (
-                    <div key={e.date} className='sleep_bar'>
-                      <div className='smile_chart'>{getBarMood(e.mood)}</div>
-                      <div className='bar'
-                        title={`${e.date} – ${e.sleep}ч`}
-                        style={{
-                          height: `${barHeight(e.sleep)}em`,
-                          backgroundColor: getBarColor(e.sleep)
-                        }}
-                      />
-                      <span
-                        style={{ fontSize: 10, marginTop: 4 }}>
-                        {e.date.slice(-5)}</span>
-                    </div>
-                  ))}
+              <div className='charts_container'>
+                <h2>График настроение и сна по дням</h2>
+                <div className='chart'>
+                  <div className='y-chart'>
+                    {Y_TICKS.map(h => (
+                      <div key={h}>{h} ч</div>
+                    ))}
+                  </div>
+
+                  <div className='x-chart'>
+                    {sortedReverseData.map(e => (
+                      <div key={e.date} className='sleep_bar'>
+                        <div className='smile_chart'>{getBarMood(e.mood)}</div>
+                        <div className='bar'
+                          title={`${e.date} – ${e.sleep}ч`}
+                          style={{
+                            height: `${barHeight(e.sleep)}em`,
+                            backgroundColor: getBarColor(e.sleep)
+                          }}
+                        />
+                        <span
+                          style={{ fontSize: 10, marginTop: 4 }}>
+                          {e.date.slice(-5)}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
             </Anim>
           </div>
         </div>
